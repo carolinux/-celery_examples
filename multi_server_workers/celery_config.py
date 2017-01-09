@@ -4,6 +4,10 @@ CELERY_TASK_RESULT_EXPIRES=None
 CELERY_RESULT_SERIALIZER='pickle'
 CELERY_IMPORTS=("multi_server_workers.tasks")
 
+CELERY_ROUTES = {
+            'multi_server_workers.tasks.slowadd': {'queue': 'slow'},
+            }
+
 BROKER_TRANSPORT = "redis"
 
 BROKER_HOST = "10.135.40.241"  # This is a private ip, only accessible from servers 

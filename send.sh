@@ -1,1 +1,1 @@
-python send_task.py
+python send_task.py add

@@ -7,3 +7,10 @@ def add(x,y):
     time.sleep(3) 
     print "end sleep add"
     return x+y
+
+@celeryapp.task
+def slowadd(x,y):
+    print "starting sleep slowadd"
+    time.sleep(20) 
+    print "end sleep slowadd"
+    return x+y
