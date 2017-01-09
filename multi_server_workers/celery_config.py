@@ -6,6 +6,7 @@ CELERY_IMPORTS=("multi_server_workers.tasks")
 
 CELERY_ROUTES = {
             'multi_server_workers.tasks.slowadd': {'queue': 'slow'},
+            'multi_server_workers.tasks.add': {'queue': 'regular'},
             }
 
 BROKER_TRANSPORT = "redis"
