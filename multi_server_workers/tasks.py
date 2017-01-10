@@ -26,7 +26,7 @@ def tsum(list_of_num, x=0, y=0):
 
 @celeryapp.task
 def run_chord(x,y):
-    callback = tsum.subtask(x=x,y=y)
+    callback = tsum.subtask(kwargs={"x":x,"y":y})
     header = [add.subtask((i, i)) for i in xrange(3)]
     result = chord(header)(callback)
     # tasks waiting for other tasks to finish in this way is inefficient: 
