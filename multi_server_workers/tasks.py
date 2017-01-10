@@ -21,7 +21,7 @@ def slowadd(x,y):
     return x+y
 
 @celeryapp.task
-def tsum(list_of_num, x=None, y=None):
+def tsum(list_of_num, x=0, y=0):
     return sum(list_of_num)+x+y
 
 @celeryapp.task
@@ -34,4 +34,4 @@ def run_chord(x,y):
     # with allow_join_result():
     #     res = result.get()
     #     print "Chord result: {}".format(res)
-    return res
+    return result
