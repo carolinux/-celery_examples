@@ -34,4 +34,4 @@ def run_chord(x,y):
     # with allow_join_result():
     #     res = result.get()
     #     print "Chord result: {}".format(res)
-    return result
+    return result.delay()
