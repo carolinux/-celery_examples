@@ -1,4 +1,7 @@
 import time
+
+from celery import chord
+
 from . import celeryapp
 
 @celeryapp.task
@@ -14,3 +17,16 @@ def slowadd(x,y):
     time.sleep(20) 
     print "end sleep slowadd"
     return x+y
+
+@celeryapp.task
+def tsum(list_of_num):
+    return sum(list_of_num)
+
+@celeryapp.task
+def run_chord(x,y):
+    callback = tsum.subtask()
+    header = [add.subtask((i, i)) for i in xrange(100)]
+    result = chord(header)(callback)
+    res = result.get()
+    print "Chord result: {}".format(res)
+    return res
