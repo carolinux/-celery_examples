@@ -10,7 +10,7 @@ from . import celeryapp
 def add(self, x,y):
     print "starting sleep add"
     time.sleep(3) 
-    called_func(parent=self)
+    called_func(parent_task=self)
     print "end sleep add"
     return x+y
 
