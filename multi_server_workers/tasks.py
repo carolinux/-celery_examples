@@ -6,12 +6,20 @@ from celery.result import allow_join_result
 
 from . import celeryapp
 
-@celeryapp.task
-def add(x,y):
+@celeryapp.task(bind=True)
+def add(self, x,y):
     print "starting sleep add"
     time.sleep(3) 
+    called_func(parent=self)
     print "end sleep add"
     return x+y
+
+def called_func(parent_task=None):
+    print "I am in called func"
+    if parent_task:
+        parent_task.update_state(state='foo')
+    time.sleep(1)
+
 
 @celeryapp.task
 def slowadd(x,y):
